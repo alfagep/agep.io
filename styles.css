@@ -440,11 +440,18 @@ a {
   align-items: start;
 }
 
+.reader-mobile-toc {
+  display: none;
+}
+
 .reader-toc {
   position: sticky;
   top: 102px;
   display: grid;
-  gap: 14px;
+  max-height: calc(100svh - 132px);
+  gap: 12px;
+  overflow: auto;
+  padding-right: 6px;
   color: rgba(9, 13, 15, 0.68);
   font-size: 15px;
 }
@@ -453,11 +460,17 @@ a {
 .reader-toc span {
   display: block;
   text-decoration: none;
+  line-height: 1.36;
 }
 
 .reader-toc a.is-active {
   color: var(--ink);
   font-weight: 700;
+}
+
+.reader-toc a:hover,
+.reader-toc a:focus-visible {
+  color: var(--ink);
 }
 
 .reader-label {
@@ -475,14 +488,56 @@ a {
   line-height: 1.5;
 }
 
+.book-text {
+  min-width: 0;
+}
+
+.chapter,
+.part-divider {
+  scroll-margin-top: 112px;
+}
+
 .chapter {
   font-family: Georgia, "Times New Roman", serif;
+}
+
+.chapter + .chapter {
+  margin-top: 96px;
+  padding-top: 58px;
+  border-top: 1px solid rgba(9, 13, 15, 0.14);
+}
+
+.part-divider {
+  margin: 78px 0 84px;
+  padding: 42px 0;
+  border-top: 1px solid rgba(9, 13, 15, 0.16);
+  border-bottom: 1px solid rgba(9, 13, 15, 0.16);
+}
+
+.part-divider h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 46px;
+  line-height: 1.06;
+  font-weight: 500;
+}
+
+.part-divider + .chapter {
+  margin-top: 0;
 }
 
 .chapter h2 {
   margin: 0 0 38px;
   font-size: 54px;
   line-height: 1.05;
+  font-weight: 500;
+}
+
+.chapter h3 {
+  margin: 56px 0 26px;
+  color: #7d5e1c;
+  font-size: 28px;
+  line-height: 1.2;
   font-weight: 500;
 }
 
@@ -510,6 +565,18 @@ a {
   font-size: 14px !important;
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.chapter-list {
+  margin: 24px 0 0;
+  padding-left: 1.35em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  line-height: 1.72;
+}
+
+.chapter-list li + li {
+  margin-top: 14px;
 }
 
 .reader-next {
@@ -544,6 +611,19 @@ blockquote {
   color: var(--ink);
   border-color: #8b6f32;
   background: transparent;
+}
+
+.book-hero .ghost-action {
+  color: var(--text);
+  border-color: var(--line-strong);
+  background: rgba(247, 243, 235, 0.05);
+}
+
+.book-hero .ghost-action:hover,
+.book-hero .ghost-action:focus-visible {
+  color: var(--ink);
+  border-color: var(--brass);
+  background: var(--brass);
 }
 
 .site-footer {
@@ -623,6 +703,10 @@ blockquote {
 
   .book-cover-image {
     width: min(320px, 62vw);
+  }
+
+  .reader-layout {
+    gap: 54px;
   }
 
   .site-footer {
@@ -739,22 +823,82 @@ blockquote {
     padding: 64px 18px 78px;
   }
 
+  .reader-mobile-toc {
+    display: block;
+    width: min(760px, 100%);
+    margin: 0 auto 42px;
+  }
+
+  .reader-mobile-toc details {
+    border: 1px solid rgba(9, 13, 15, 0.16);
+    border-radius: 6px;
+    background: #ece5d8;
+  }
+
+  .reader-mobile-toc summary {
+    cursor: pointer;
+    padding: 17px 18px;
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .reader-mobile-links {
+    display: grid;
+    gap: 12px;
+    padding: 0 18px 20px;
+  }
+
+  .reader-mobile-links a {
+    color: rgba(9, 13, 15, 0.72);
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
   .reader-layout {
     grid-template-columns: 1fr;
     gap: 42px;
   }
 
   .reader-toc {
-    position: static;
-    padding-bottom: 28px;
-    border-bottom: 1px solid rgba(9, 13, 15, 0.16);
+    display: none;
+  }
+
+  .chapter,
+  .part-divider {
+    scroll-margin-top: 122px;
+  }
+
+  .chapter + .chapter {
+    margin-top: 72px;
+    padding-top: 44px;
+  }
+
+  .part-divider {
+    margin: 58px 0 66px;
+    padding: 34px 0;
+  }
+
+  .part-divider h2 {
+    font-size: 34px;
   }
 
   .chapter h2 {
     font-size: 38px;
   }
 
+  .chapter h3 {
+    margin: 42px 0 20px;
+    font-size: 24px;
+  }
+
   .chapter p {
+    font-size: 19px;
+    line-height: 1.68;
+  }
+
+  .chapter-list {
+    padding-left: 1.25em;
     font-size: 19px;
     line-height: 1.68;
   }
@@ -809,6 +953,32 @@ blockquote {
 
   .book-actions {
     margin-top: 24px;
+  }
+
+  .reader-mobile-toc {
+    margin-bottom: 34px;
+  }
+
+  .reader-mobile-toc summary {
+    padding: 15px 16px;
+  }
+
+  .reader-mobile-links {
+    padding: 0 16px 18px;
+  }
+
+  .reader-mobile-links a {
+    font-size: 14px;
+  }
+
+  .chapter h2 {
+    font-size: 34px;
+  }
+
+  .chapter p,
+  .chapter-list {
+    font-size: 18px;
+    line-height: 1.7;
   }
 }
 
