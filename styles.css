@@ -97,7 +97,8 @@ a {
 }
 
 .nav-links a:hover,
-.nav-links a:focus-visible {
+.nav-links a:focus-visible,
+.nav-links a.is-active {
   color: var(--text);
 }
 
@@ -320,6 +321,163 @@ a {
   color: var(--ink);
 }
 
+.book-entry-section {
+  background: #e7dfd0;
+  color: var(--ink);
+}
+
+.book-entry-section .section-kicker {
+  color: #7d5e1c;
+}
+
+.light-action {
+  color: var(--ink);
+  border-color: #8b6f32;
+  background: rgba(139, 111, 50, 0.07);
+}
+
+.book-page {
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.book-hero {
+  position: relative;
+  min-height: 86svh;
+  overflow: hidden;
+  display: grid;
+  align-items: end;
+  padding: 132px 36px 92px;
+  color: var(--text);
+}
+
+.book-hero-content {
+  position: relative;
+  z-index: 1;
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
+.book-hero h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 78px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.book-lead {
+  max-width: 760px;
+  margin: 34px 0 0;
+  color: var(--quiet);
+  font-size: 24px;
+  line-height: 1.44;
+}
+
+.book-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.ghost-action {
+  color: var(--text);
+  border-color: var(--line-strong);
+  background: rgba(247, 243, 235, 0.05);
+}
+
+.book-reader-section {
+  padding: 92px 36px 108px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.reader-layout {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 760px);
+  gap: 76px;
+  align-items: start;
+}
+
+.reader-toc {
+  position: sticky;
+  top: 102px;
+  display: grid;
+  gap: 14px;
+  color: rgba(9, 13, 15, 0.68);
+  font-size: 15px;
+}
+
+.reader-toc a,
+.reader-toc span {
+  display: block;
+  text-decoration: none;
+}
+
+.reader-toc a.is-active {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.reader-label {
+  margin: 0 0 10px;
+  color: #7d5e1c;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.reader-note {
+  margin: 18px 0 0;
+  color: rgba(9, 13, 15, 0.58);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.chapter {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.chapter h2 {
+  margin: 0 0 38px;
+  font-size: 54px;
+  line-height: 1.05;
+  font-weight: 500;
+}
+
+.chapter p {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.72;
+}
+
+.chapter p + p {
+  margin-top: 18px;
+}
+
+.chapter hr {
+  width: 100%;
+  height: 1px;
+  margin: 48px 0;
+  border: 0;
+  background: rgba(9, 13, 15, 0.18);
+}
+
+.chapter-time {
+  color: #7d5e1c;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px !important;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.reader-next {
+  margin-top: 44px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
 .questions-section .section-kicker {
   color: #7d5e1c;
 }
@@ -418,18 +576,24 @@ blockquote {
 
 @media (max-width: 680px) {
   .site-header {
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
     padding: 16px 18px;
   }
 
   .brand {
-    flex-direction: column;
-    gap: 0;
+    flex-direction: row;
+    gap: 10px;
   }
 
   .nav-links {
-    gap: 12px;
+    width: 100%;
+    gap: 16px;
     font-size: 13px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    white-space: nowrap;
   }
 
   .hero {
@@ -474,6 +638,48 @@ blockquote {
 
   .section h2 {
     font-size: 32px;
+  }
+
+  .book-hero {
+    min-height: 82svh;
+    padding: 132px 18px 72px;
+  }
+
+  .book-hero h1 {
+    font-size: 46px;
+  }
+
+  .book-lead {
+    font-size: 19px;
+  }
+
+  .book-actions {
+    display: grid;
+    gap: 0;
+  }
+
+  .book-reader-section {
+    padding: 64px 18px 78px;
+  }
+
+  .reader-layout {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .reader-toc {
+    position: static;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(9, 13, 15, 0.16);
+  }
+
+  .chapter h2 {
+    font-size: 38px;
+  }
+
+  .chapter p {
+    font-size: 19px;
+    line-height: 1.68;
   }
 
   .body-copy p,
