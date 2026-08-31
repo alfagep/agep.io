@@ -844,7 +844,9 @@ blockquote {
 
   .reader-mobile-links {
     display: grid;
+    max-height: 58svh;
     gap: 12px;
+    overflow: auto;
     padding: 0 18px 20px;
   }
 
