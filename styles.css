@@ -65,6 +65,8 @@ a {
   background: rgba(9, 13, 15, 0.72);
   border-bottom: 1px solid rgba(247, 243, 235, 0.08);
   backdrop-filter: blur(16px);
+  transition: transform 220ms ease, opacity 220ms ease;
+  will-change: transform;
 }
 
 .brand {
@@ -723,6 +725,17 @@ blockquote {
     padding: 16px 18px;
   }
 
+  body.reader-ui-hidden .site-header {
+    transform: translateY(calc(-100% - 2px));
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  body.reader-ui-visible .site-header {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
   .brand {
     flex-direction: row;
     gap: 10px;
@@ -825,8 +838,24 @@ blockquote {
 
   .reader-mobile-toc {
     display: block;
+    position: sticky;
+    top: calc(var(--reader-header-height, 92px) + 10px);
+    z-index: 14;
     width: min(760px, 100%);
     margin: 0 auto 42px;
+    transition: transform 220ms ease, opacity 220ms ease;
+    will-change: transform;
+  }
+
+  body.reader-ui-hidden .reader-mobile-toc {
+    transform: translateY(var(--reader-mobile-hide-shift, -160px));
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  body.reader-ui-visible .reader-mobile-toc {
+    transform: translateY(0);
+    opacity: 1;
   }
 
   .reader-mobile-toc details {
@@ -987,5 +1016,10 @@ blockquote {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .site-header,
+  .reader-mobile-toc {
+    transition: none;
   }
 }
